@@ -1,0 +1,73 @@
+PS C:\Users\UJJVALA> django-admin --version  
+4.2.11
+PS C:\Users\UJJVALA> django-admin startproject CarRental
+open c drive -> car rental -> open in terminal -> code . -> enter button
+PS C:\Users\UJJVALA\CarRental> python manage.py runserver(terminal)
+
+3.create django application/module
+1.car - python manage.py startapp car
+2.bike - python manage.py startapp bike
+3.bicycle - python manage.py startapp bicycle
+
+python manage.py runserver
+
+django(MVT architecture) model view template
+
+create django application/module
+    
+	CARRENTAL.URLS
+	from django.contrib import admin
+from django.urls import include, path
+#place to add urls
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('car/', include('car.urls')),
+    path('bicycle/', include('bicycle.urls')),
+    path('bike/', include('bike.urls'))
+]
+
+car/bike/cycle module-> create new file -> urls.py ->
+from django.contrib import admin
+from django.urls import include, path
+from car/bike/cycle import views
+#place to add urls
+urlpatterns = [
+
+    path('', views.home, name='home')
+]
+
+car/bike/cycle module->views.py->
+
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here. python function to display output
+
+def home(request):
+    return HttpResponse("This is  car/bike/cycle module")
+
+Inclusion of html pages
+ car rental->Settings.py->templates-> dirs:['templates']
+ 
+Inclusion of html pages(car)
+    views.py->
+	 def home(request):
+     #return HttpResponse("This is  car module")
+     return render(request,'index.html')
+	 
+2.BOOTSTRAP
+     1.include bootstrap->get bootstrap.com
+	 
+	 components->card(will be useful)
+3.how to load images into html 
+   1.create a folder named static(fixed)
+        ---https://docs.djangoproject.com/en/4.2/howto/static-files/---
+		 {% load static %}
+         <img src="{% static 'my_app/example.jpg' %}" alt="My image">
+   2.if image is not loaded
+         # settings.py
+		 import os
+		 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+         STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+         STATICFILES_DIRS = [
+         os.path.join(BASE_DIR, 'static'),
+              ]

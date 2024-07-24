@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental - Cars</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .car {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .car img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .car h2 {
+            margin-top: 0;
+        }
+
+        .fa-star {
+            color: gold;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .user-details {
+            color: #fff;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Car Rental</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Prices</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+                        <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+                        <li><a class="dropdown-item" href="#">Model Year: Newest First</a></li>
+                        <li><a class="dropdown-item" href="#">Model Year: Oldest First</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="user-details">
+                Logged in as: John Doe
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="car">
+                    <img src="{% static 'car1.jpg' %}" class="img-fluid" alt="Car 1">
+                    <h2>Sedan</h2>
+                    <p>24 Hours  :  1776</p>
+                    <p>4 Days +  : 1584/day</p>
+                    <p>10 Days + :  1056/day</p>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="car">
+                    <img src="{% static 'car2.jpg' %}" class="img-fluid" alt="Car 2">
+                    <h2>SUV</h2>
+                    <p>24 Hours  :   2784</p>
+                    <p>4 Days +  : 2280/day</p>
+                    <p>10 Days + : 1992/day</p>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="car">
+                    <img src="{% static 'car3.jpg' %}" class="img-fluid" alt="Car 3">
+                    <h2>MUV</h2>
+                    <p>24 Hours  :  5976</p>
+                    <p>4 Days +  : 5496/day</p>
+                    <p>10 Days + :  4488/day</p>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
