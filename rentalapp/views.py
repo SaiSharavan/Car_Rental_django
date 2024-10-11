@@ -6,6 +6,7 @@ def register(request):
     from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from .models import Car
 
 def register(request):
     if request.method == 'POST':
@@ -59,4 +60,20 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
    
-    
+def upload_car(request):
+    if request.method == 'POST':
+        car_name = request.POST.get('car_name')
+        available_dates = request.POST.get('available_dates')
+        price = request.POST.get('price')
+        car_photo = request.FILES['car_photo']
+
+        car = Car(
+            car_name=car_name,
+            available_dates=available_dates,
+            price=price,
+            car_photo=car_photo
+        )
+        car.save()
+
+        return redirect('cars')  # Redirect to the page that lists the cars
+    return render(request, 'upload_car.html')    

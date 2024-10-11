@@ -1,112 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental - Book Now</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <title>Book Now</title>
     <style>
-        /* Custom styles */
         body {
-            background-color: #f8f9fa;
+            background-color: lightsteelblue;
+            font-family: Arial, sans-serif;
+            padding-top: 60px; /* Adjusted for navbar height */
         }
 
         .navbar {
-            background-color: #343a40 !important;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #343a40; /* Dark background for navbar */
+            color: white;
+            padding: 10px 20px; /* Padding for navbar */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Center items vertically */
         }
 
-        .navbar-brand {
-            font-size: 1.5rem;
+        .navbar a {
+            color: white; /* White text color for links */
+            margin: 0 15px; /* Spacing between links */
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .navbar a:hover {
+            text-decoration: underline; /* Underline effect on hover */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto; /* Centered container with top margin */
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .car-info {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .car-info img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .car-info p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .success-message {
+            color: green;
+            text-align: center;
+            margin: 10px 0;
             font-weight: bold;
         }
 
-        .card {
-            border: 1px solid #dee2e6;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .card-body {
-            padding: 2rem;
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
-        .card-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #007bff;
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
 
-        .card-text {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+        button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            font-size: 1.2rem;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+        button:hover {
+            background-color: #4cae4c;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Car Rental</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cars.html">Cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="booknow.html">Prices</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="navbar">
+        <div>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'cars' %}">Cars</a>
+            <a href="{% url 'upload_car' %}">Upload Car</a>
         </div>
-    </nav>
-
-    <!-- Car Rental Details -->
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">Car Rental Details</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non felis eu nisl finibus interdum.</p>
-                        <p class="card-text">Price: $500 per day</p>
-                        <p class="card-text">Model: Model Name</p>
-                        <p class="card-text">Year: 2023</p>
-                        <p class="card-text">Mileage: 10,000 miles</p>
-                        <p class="card-text">Location: City, Country</p>
-                        <a href="#" class="btn btn-primary">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <img src="{% static 'car1.jpg' %}" class="card-img-top" alt="Car 1">
-                </div>
-            </div>
+        <div>
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <h1>Book {{ car.car_name }}</h1>
+        <div class="car-info">
+            <img src="{{ car.car_photo.url }}" alt="{{ car.car_name }}">
+            <p>Price: Rs{{ car.price }}</p>
+        </div>
+
+        {% if success_message %}
+            <p class="success-message">{{ success_message }}</p>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %} <!-- CSRF token for security -->
+            <label for="user_name">Your Name:</label>
+            <input type="text" id="user_name" name="user_name" required>
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -19,6 +19,8 @@ from django.urls import path
 from django.contrib.auth import views as auth_views 
 from car.views import cars, home,booknow
 from rentalapp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +30,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
-    path('booknow.html',booknow,name='booknow')
+    path('booknow/<int:car_id>/', booknow, name='booknow'),
+    path('upload_car/', views.upload_car, name='upload_car')
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

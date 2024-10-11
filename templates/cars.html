@@ -3,160 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental - Cars</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Car Rental</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; 
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            padding-top: 70px; 
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .car {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .car img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .car h2 {
-            margin-top: 0;
-        }
-
-        .fa-star {
-            color: gold;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
+        h1 {
             text-align: center;
+            color: #343a40;
+            margin-bottom: 30px;
         }
 
-        .user-details {
-            color: #fff;
-            text-align: right;
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .car-list {
+            display: grid; /* Use grid layout */
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Responsive two-column layout */
+            padding: 0 20px;
+            gap: 20px; /* Space between car items */
+        }
+
+        .car-item {
+            display: flex; /* Use flexbox for alignment */
+            background-color: white;
+            border: 2px solid #007bff; 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 220px; /* Increased height */
+        }
+
+        .car-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+        }
+
+        .car-item img {
+            width: 250px; /* Increased width for images */
+            height: 160px; /* Increased height */
+            object-fit: cover; 
+            border-radius: 5px;
+            margin-right: 20px; /* Space between image and details */
+        }
+
+        .car-details {
+            display: flex;
+            flex-direction: column; /* Stack details vertically */
+            justify-content: center; /* Center align vertically */
+        }
+
+        .car-item h2 {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .car-item p {
+            font-size: 1rem;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .book-now-button {
+            display: block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .book-now-button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .car-item {
+                flex-direction: column; /* Stack image and details for smaller screens */
+                align-items: center; /* Center align content */
+                height: auto; /* Auto height for stacked layout */
+            }
+
+            .car-item img {
+                margin-right: 0; /* Remove margin for small screens */
+                margin-bottom: 10px; /* Add space below image */
+            }
         }
     </style>
 </head>
 <body>
-    {% load static %}
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Car Rental</a>
+        <div class="container">
+            <a class="navbar-brand" href="#">Car Rental</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Cars</a>
+                        <a class="nav-link" href="{% url 'cars' %}">Cars</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Prices</a>
+                        <a class="nav-link" href="{% url 'upload_car' %}">Upload Car</a>
                     </li>
                 </ul>
-                <form class="d-flex me-3">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
-                        <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
-                        <li><a class="dropdown-item" href="#">Model Year: Newest First</a></li>
-                        <li><a class="dropdown-item" href="#">Model Year: Oldest First</a></li>
-                    </ul>
+                <div class="d-flex ms-auto">
+                    {% if user.is_authenticated %}
+                        <span class="navbar-text me-2">Welcome, {{ user.username }}</span>
+                        <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-light me-2">Login</a>
+                        <a href="{% url 'register' %}" class="btn btn-outline-light">Register</a>
+                    {% endif %}
                 </div>
-            </div>
-            <div class="user-details">
-                Logged in as: John Doe
-                <a href="#">Logout</a>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="car">
-                    <img src="{% static 'car1.jpg' %}" class="img-fluid" alt="Car 1">
-                    <h2>Sedan</h2>
-                    <p>24 Hours  :  1776</p>
-                    <p>4 Days +  : 1584/day</p>
-                    <p>10 Days + :  1056/day</p>
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    <a href="#" class="btn btn-primary">Book Now</a>
+    <h1>Available Cars</h1>
+    <div class="car-list">
+        {% for car in cars %}
+            <div class="car-item">
+                <img src="{{ car.car_photo.url }}" alt="{{ car.car_name }}">
+                <div class="car-details">
+                    <h2>{{ car.car_name }}</h2>
+                    <p>Price per hr: ₹<span class="price-per-hour">{{ car.price }}</span></p>
+                    <p>Available Dates: {{ car.available_dates }}</p>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'booknow' car.id %}" class="book-now-button">Book Now</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-secondary book-now-button">Login to Book</a>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="car">
-                    <img src="{% static 'car2.jpg' %}" class="img-fluid" alt="Car 2">
-                    <h2>SUV</h2>
-                    <p>24 Hours  :   2784</p>
-                    <p>4 Days +  : 2280/day</p>
-                    <p>10 Days + : 1992/day</p>
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    <a href="#" class="btn btn-primary">Book Now</a>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="car">
-                    <img src="{% static 'car3.jpg' %}" class="img-fluid" alt="Car 3">
-                    <h2>MUV</h2>
-                    <p>24 Hours  :  5976</p>
-                    <p>4 Days +  : 5496/day</p>
-                    <p>10 Days + :  4488/day</p>
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    <a href="#" class="btn btn-primary">Book Now</a>
-                </div>
-            </div>
-        </div>
+        {% empty %}
+            <p>No cars available.</p>
+        {% endfor %}
     </div>
+
+    <script>
+        function calculatePricePerDay() {
+            const carItems = document.querySelectorAll('.car-item');
+
+            carItems.forEach(car => {
+                const pricePerHourElement = car.querySelector('.price-per-hour');
+                const pricePerDayElement = car.querySelector('.price-per-day');
+                const pricePerHour = parseFloat(pricePerHourElement.textContent);
+                const pricePerDay = pricePerHour * 24;
+                pricePerDayElement.textContent = pricePerDay.toFixed(2); 
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', calculatePricePerDay);
+    </script>
 </body>
 </html>
