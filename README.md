@@ -40,8 +40,11 @@ In developing the web-based car rental application, Python played a pivotal role
 
 ## Demo
 
-![image](https://github.com/SaiSharavan/Car-rental-/assets/171143906/f73ddf11-8c4e-4bf7-9171-003345411139)
+![Screenshot 2024-10-11 192245](https://github.com/user-attachments/assets/3cc6c6ce-9879-4131-bdc0-ac202567804e)
 
-![image](https://github.com/SaiSharavan/Car-rental-/assets/171143906/de2b7fb9-9273-4848-afd4-e6972f3eb374)
+![Screenshot 2024-10-11 192310](https://github.com/user-attachments/assets/2947d7e8-3c52-4f6c-818d-e22b0549c670)
+
+![image](https://github.com/user-attachments/assets/6cb7167d-b989-4651-abcc-20764c25b289)
+
 
 
